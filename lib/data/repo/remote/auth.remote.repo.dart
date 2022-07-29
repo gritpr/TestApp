@@ -21,6 +21,9 @@ abstract class AuthRemoteRepo {
       {required String userId,
       required String otp,
       required String newPassword});
+
+  Future<EmptyResponse> fundWallet(
+      {required String amount, required String userId});
 }
 
 class AuthRemoteRepoImp extends AuthRemoteRepo {
@@ -97,5 +100,20 @@ class AuthRemoteRepoImp extends AuthRemoteRepo {
       return ErrorResponse.fromJson(result['user']);
     }
     return VerifyEmailResponse.fromJson(result['user']);
+  }
+
+  @override
+  Future<EmptyResponse> fundWallet(
+      {required String amount, required String userId}) async {
+    final data = {'amount': amount};
+    final result = await http.put(
+        path: http.ApiEndPoints.fundWallet(userId), data: data, addAuth: false);
+    if (result['code'] == 404) {
+      return ErrorResponse.fromJson(result['message']);
+    }
+    if (result['user']['success'] == false) {
+      return ErrorResponse.fromJson(result['user']);
+    }
+    return FundWalletResponse.fromJson(result['user']);
   }
 }

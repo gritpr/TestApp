@@ -41,11 +41,16 @@ error401() {
   Get.context!.read(authViewModel).onLogOut();
 }
 
+error404() {
+  showErrorSnackbar('Something went wrong, contact Admin');
+}
+
 Future post({
   required String path,
   required data,
   bool addAuth = true,
   bool check401 = true,
+  bool check404 = true,
 }) async {
   http.Response? response;
   try {
@@ -63,6 +68,13 @@ Future post({
       error401();
       final Map<String, dynamic> data = <String, dynamic>{};
       data['code'] = '401';
+      data['message'] = 'Access Forbidden,Contact Support';
+      return data;
+    }
+    if (check404 && response.statusCode == 404) {
+      error404();
+      final Map<String, dynamic> data = <String, dynamic>{};
+      data['code'] = '404';
       data['message'] = 'Access Forbidden,Contact Support';
       return data;
     }

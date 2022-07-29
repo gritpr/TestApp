@@ -54,10 +54,7 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   void initState() {
     super.initState();
-    if (BuildConfig.isDev) {
-      emailController.text = 'mob5@mailinator.com';
-      passwordController.text = 'password';
-    }
+  
   }
 
   @override

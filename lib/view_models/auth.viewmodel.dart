@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
-
+import 'package:mhub/view_models/cart.viewmodel.dart';
 
 import '../__lib.dart';
 
@@ -26,7 +26,6 @@ class AuthViewModel extends ChangeNotifier {
   User? _user;
   User? get user => _user;
 
-
   String? get token => _token;
 
   String? _userId;
@@ -41,7 +40,6 @@ class AuthViewModel extends ChangeNotifier {
     required String emailAddress,
     required String password,
   }) async {
-
     _token = logIn.token;
     _userId = logIn.userId;
   }
@@ -58,6 +56,7 @@ class AuthViewModel extends ChangeNotifier {
     _user = null;
     _token = null;
     _userId = null;
+    context.read(cartViewModel).stopPolling;
     replaceScreen(const SignInScreen());
   }
 }

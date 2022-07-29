@@ -22,10 +22,11 @@ class ApiEndPoints {
 
   //CART
 
-  static String getProductListings(String userId) => '/user/$userId/products';
+  static String getProductListings(String userId, String? productId) => productId==null? '/user/$userId/products':'/user/$userId/products?_id=$productId';
   static String addToCart = '/user/cart/add-item';
-  static String getCart(String userId, String orderId) =>
-      '/user/$userId/cart?orderId=$orderId';
+  static String getCart(String userId, String? orderId) => orderId == null
+      ? '/user/$userId/cart'
+      : '/user/$userId/cart?orderId=$orderId';
   static String checkOut = '/user/cart/checkout';
 
   // static const String = '';

@@ -35,7 +35,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     }
     updateIsLoading();
 
-    /// There is currecntly no way of getting the otp. 
+    /// There is currecntly no way of getting the otp.
 
     final result = await authRemoteRepo.resetPassword(
       userId: widget.userId,
@@ -46,6 +46,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     if (result is ErrorResponse) {
       showErrorSnackbar('${result.message}');
     } else {
+      showSuccessSnackbar('Password reset successfully, please sign in');
       replaceScreen(const SignInScreen());
     }
   }
@@ -130,72 +131,6 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
           verticalSpace(height: 34),
         ],
       ),
-    );
-  }
-
-  void showScuccesDialog() async {
-    Get.dialog(
-      Material(
-        type: MaterialType.transparency,
-        child: Dialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          child: Container(
-            decoration: BoxDecoration(
-              color: AppColors.white,
-              borderRadius: BorderRadius.circular(4),
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(AppAssets.successBg),
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                  child: Image.asset(
-                    AppAssets.successBg,
-                  ),
-                ),
-                verticalSpace(height: 24),
-                Container(
-                  padding: pad(horiz: 24),
-                  color: AppColors.white,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      text('Success!', weight: FontWeight.w900, size: 15),
-                      verticalSpace(height: 4),
-                      text(
-                          'Your password has been reset successfully.\nKindly sign in with your  new credentials',
-                          color: AppColors.cA1A1A1,
-                          textAlign: TextAlign.center),
-                      verticalSpace(height: 32),
-                    ],
-                  ),
-                ),
-                InkWell(
-                  onTap: () async {
-                    pop();
-                    await pushScreen(const SignInScreen());
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    height: eqH(43),
-                    color: AppColors.cEEEEEE,
-                    child: Center(
-                        child: text('Ok',
-                            color: AppColors.brandBlue,
-                            weight: FontWeight.w700)),
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
-      barrierDismissible: false,
     );
   }
 }

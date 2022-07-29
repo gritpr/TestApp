@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 
-
 import '__lib.dart';
 
 void main() async {
@@ -14,12 +13,7 @@ void main() async {
   if (!BuildConfig.isDev) {
     ErrorWidget.builder = (FlutterErrorDetails details) => Container();
   }
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    systemNavigationBarColor: Colors.blue,
-    statusBarColor: Colors.white,
-    statusBarIconBrightness: Brightness.dark,
-    systemNavigationBarIconBrightness: Brightness.light,
-  ));
+ 
   AppTrackingPermissionHandler.requestTrackingPermisssion();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then(

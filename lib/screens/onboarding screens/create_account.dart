@@ -39,10 +39,10 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     );
     updateIsLoading();
     if (result is ErrorResponse) {
-      showErrorSnackbar('Something went Wrong, try Again');
+      showErrorSnackbar('${result.message}');
     } else {
       result as CreateAccountResponse;
-      context.read(authViewModel).setUserProfile(user: result.data);
+      context.read(authViewModel).setUserId(userId:result.data!.sId);
 
       pushScreen(VerifyEmailScreen(
         password: passwordController.text,

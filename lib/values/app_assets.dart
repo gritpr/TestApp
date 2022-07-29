@@ -5,5 +5,6 @@ abstract class AppAssets {
   static const String logoIcon = assetsRoot + 'logoIcon.png';
   static const String backButton = assetsRoot + 'backButton.png';
   static const String eye = assetsRoot + 'eye.png';
-  static const String successBg = assetsRoot + 'successBg.png';
+
+    static const String foodIcon = assetsRoot + 'foodIcon.png';
 }

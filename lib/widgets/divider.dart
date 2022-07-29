@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../__lib.dart';
@@ -8,4 +7,3 @@ Widget divider() => Container(
       width: double.infinity,
       color: AppColors.cEEEEEE,
     );
-

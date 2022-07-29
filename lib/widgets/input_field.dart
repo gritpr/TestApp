@@ -3,7 +3,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 import '../__lib.dart';
 
@@ -41,7 +40,7 @@ Widget inputFeild(
               const BoxConstraints(minWidth: 30, minHeight: 16),
           hintText: hint,
           hintStyle: const TextStyle(
-              color: AppColors.cCDCDCD,
+              color: Colors.grey,
               fontWeight: FontWeight.w600,
               fontSize: 14),
           filled: true,
@@ -67,61 +66,7 @@ Widget inputFeild(
 }
 
 
-Widget phoneFormFeild({
-  required String label,
-  FocusNode? focusNode,
-  required Function(PhoneNumber number) onPhoneNumberChange,
-  required TextEditingController controller,
-  String? Function(String?)? validator,
-  String? hint,
-}) {
-  return Container(
-    child: col(
-      children: [
-        text(label, color: AppColors.cBDBDBD),
-        verticalSpace(height: 8),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: AppColors.cF7F7F7),
-            color: AppColors.cF7F7F7,
-          ),
-          child: InternationalPhoneNumberInput(
-            selectorConfig: const SelectorConfig(
-              selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
-            ),
-            textFieldController: controller,
-            onInputChanged: onPhoneNumberChange,
-            maxLength: 12,
-            validator: validator,
-            inputDecoration: InputDecoration(
-              hintText: hint,
-              hintStyle: const TextStyle(
-                  color: AppColors.cCDCDCD,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 14),
-              filled: true,
-              fillColor: AppColors.cF7F7F7,
-              contentPadding: pad(horiz: 12, vert: 14),
-              disabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: const BorderSide(color: AppColors.cF7F7F7),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: const BorderSide(color: AppColors.cF7F7F7),
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: const BorderSide(color: AppColors.cF7F7F7),
-              ),
-            ),
-          ),
-        ),
-      ],
-    ),
-  );
-}
+
 
 Widget passwordFeild({
   String label = 'Password',
